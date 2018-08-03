@@ -54,6 +54,10 @@ RocketChat.Migrations.add({
 				'googleCloudStorage.path': {
 					$exists: true
 				}
+			}, {
+				'IPFS.path': {
+					$exists: true
+				}
 			}]
 		};
 
@@ -70,7 +74,7 @@ RocketChat.Migrations.add({
 						s3: 1
 					}
 				}, {multi: true});
-			} else {
+			} else if (record.googleCloudStorage) {
 				RocketChat.models.Uploads.model.direct.update({_id: record._id}, {
 					$set: {
 						store: 'GoogleCloudStorage:Uploads',
@@ -80,6 +84,18 @@ RocketChat.Migrations.add({
 					},
 					$unset: {
 						googleCloudStorage: 1
+					}
+				}, {multi: true});
+			} else {
+				RocketChat.models.Uploads.model.direct.update({_id: record._id}, {
+					$set: {
+						store: 'IPFSStorage:Uploads',
+						IPFSStorage: {
+							path: record.IPFSStorage.path + record._id
+						}
+					},
+					$unset: {
+						IPFSStorage: 1
 					}
 				}, {multi: true});
 			}

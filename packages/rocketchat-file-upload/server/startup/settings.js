@@ -186,6 +186,7 @@ RocketChat.settings.addGroup('FileUpload', function() {
 			}
 		});
 	});
+
 	this.section('IPFS', function() {
 		this.add('FileUpload_IPFS_Upload_Folder_Path', '', {
 			type: 'string',
@@ -194,7 +195,26 @@ RocketChat.settings.addGroup('FileUpload', function() {
 				value: 'IPFS'
 			}
 		});
+		this.add('FileUpload_IPFS_Provider', 'GridFS', {
+			type: 'select',
+			values: [{
+				key: 'Infura',
+				i18nLabel: 'Infura'
+			}, {
+				key: 'LocalNode',
+				i18nLabel: 'LocalNode'
+			}]
+		});
+		this.add('FileUpload_IPFS_Password', '', {
+			type: 'password',
+			private: true,
+			enableQuery: {
+				_id: 'FileUpload_Storage_Type',
+				value: 'IPFS'
+			}
+		});
 	});
+
 
 	this.section('WebDAV', function() {
 		this.add('FileUpload_Webdav_Upload_Folder_Path', '', {
