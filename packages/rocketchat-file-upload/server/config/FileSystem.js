@@ -10,6 +10,7 @@ const FileSystemUploads = new FileUploadClass({
 
 	get(file, req, res) {
 		const filePath = this.store.getFilePath(file._id, file);
+		console.log(filePath);
 
 		try {
 			const stat = Meteor.wrapAsync(fs.stat)(filePath);

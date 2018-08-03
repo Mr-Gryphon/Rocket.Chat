@@ -37,6 +37,9 @@ RocketChat.settings.addGroup('FileUpload', function() {
 			key: 'Webdav',
 			i18nLabel: 'WebDAV'
 		}, {
+			key: 'IPFS',
+			i18nLabel: 'IPFS'
+		}, {
 			key: 'FileSystem',
 			i18nLabel: 'FileSystem'
 		}],
@@ -180,6 +183,15 @@ RocketChat.settings.addGroup('FileUpload', function() {
 			enableQuery: {
 				_id: 'FileUpload_Storage_Type',
 				value: 'FileSystem'
+			}
+		});
+	});
+	this.section('IPFS', function() {
+		this.add('FileUpload_IPFS_Upload_Folder_Path', '', {
+			type: 'string',
+			enableQuery: {
+				_id: 'FileUpload_Storage_Type',
+				value: 'IPFS'
 			}
 		});
 	});
