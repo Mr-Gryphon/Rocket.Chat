@@ -6,15 +6,17 @@ import ipfsApi from 'ipfs-api';
 export class IPFSStore extends UploadFS.Store {
 	constructor(options) {
 		super(options);
-
- 		const ipfs = ipfsApi({host: 'localhost', port: '5001', protocol: 'http'});
+		console.log('options');
+		console.log(options);
+		const provider = RocketChat.settings.get('FileUpload_IPFS_Provider');
+		console.log(provider);
+		const ipfs = ipfsApi({host: 'localhost', port: '5001', protocol: 'http'});
+		console.log(ipfs);
  		options.getPath = options.getPath || function(file) {
 			return file._id;
 		};
 		this.getPath = function(file) {
 			if (file.IPFS) {
-				// console.log(file.IPFSStorage.path);
-				// console.log(file.IPFSStore.path);
 				return file.IPFS.path;
 			}
 		};
@@ -29,7 +31,7 @@ export class IPFSStore extends UploadFS.Store {
 			file.IPFS = {
 				path: this.options.getPath(file)
 			};
-
+			console.log(file.IPFS);
 			file.store = this.options.name; // assign store to file
 			return this.getCollection().insert(file, callback);
 		};

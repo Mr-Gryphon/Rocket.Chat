@@ -10,7 +10,7 @@ export class GoogleStorageStore extends UploadFS.Store {
 
 	constructor(options) {
 		super(options);
-
+		console.log(options.connection);
 		const gcs = gcStorage(options.connection);
 		this.bucket = gcs.bucket(options.bucket);
 

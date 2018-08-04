@@ -158,4 +158,4 @@ const createIPFSStorageDirective = _.debounce(() => {
 }, 500);
 
 RocketChat.settings.get('FileUpload_Storage_Type', createIPFSStorageDirective);
-RocketChat.settings.get(/^FileUpload_IPFSStorage_/, createIPFSStorageDirective);
+RocketChat.settings.get(/^FileUpload_IPFS_/, createIPFSStorageDirective);
