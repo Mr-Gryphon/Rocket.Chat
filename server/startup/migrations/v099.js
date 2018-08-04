@@ -55,7 +55,7 @@ RocketChat.Migrations.add({
 					$exists: true
 				}
 			}, {
-				'IPFS.path': {
+				'IPFSStore.path': {
 					$exists: true
 				}
 			}]
@@ -89,13 +89,13 @@ RocketChat.Migrations.add({
 			} else {
 				RocketChat.models.Uploads.model.direct.update({_id: record._id}, {
 					$set: {
-						store: 'IPFSStorage:Uploads',
-						IPFSStorage: {
-							path: record.IPFSStorage.path + record._id
+						store: 'IPFSStore:Uploads',
+						IPFSStore: {
+							path: record.IPFSStore.path + record._id
 						}
 					},
 					$unset: {
-						IPFSStorage: 1
+						IPFSStore: 1
 					}
 				}, {multi: true});
 			}

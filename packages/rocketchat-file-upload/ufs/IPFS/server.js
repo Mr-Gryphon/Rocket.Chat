@@ -13,7 +13,9 @@ export class IPFSStore extends UploadFS.Store {
 		};
 		this.getPath = function(file) {
 			if (file.IPFS) {
-				return file.IPFSStorage.path;
+				// console.log(file.IPFSStorage.path);
+				// console.log(file.IPFSStore.path);
+				return file.IPFS.path;
 			}
 		};
 

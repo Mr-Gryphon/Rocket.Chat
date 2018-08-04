@@ -115,12 +115,11 @@ RocketChat.settings.get('FileUpload_Storage_Type', createGoogleStorageDirective)
 RocketChat.settings.get(/^FileUpload_GoogleStorage_/, createGoogleStorageDirective);
 
 const createIPFSStorageDirective = _.debounce(() => {
-	
 	const type = RocketChat.settings.get('FileUpload_Storage_Type');
 	const uploadFolderPath = RocketChat.settings.get('FileUpload_IPFS_Upload_Folder_Path');
 	const server = RocketChat.settings.get('FileUpload_IPFS_Provider');
 	const password = RocketChat.settings.get('FileUpload_IPFS_Password');
-	console.log('Storage Type '+type);
+	console.log(`Storage Type ${ type }`);
 	delete Slingshot._directives['rocketchat-uploads-ipfs'];
 
 	if (type === 'IPFS' && !_.isEmpty(server) && !_.isEmpty(password)) {
@@ -135,7 +134,7 @@ const createIPFSStorageDirective = _.debounce(() => {
 			key(file, metaContext) {
 				const id = Random.id();
 				const path = `${ RocketChat.settings.get('uniqueID') }/uploads/${ metaContext.rid }/${ this.userId }/${ id }`;
-
+				console.log(path);
 				const upload = {
 					_id: id,
 					rid: metaContext.rid,
@@ -144,7 +143,7 @@ const createIPFSStorageDirective = _.debounce(() => {
 					}
 				};
 
-				RocketChat.models.Uploads.insertFileInit(this.userId, 'IPFS:Uploads', file, upload);
+				RocketChat.models.Uploads.insertFileInit(this.userId, 'IPFSStore:Uploads', file, upload);
 
 				return path;
 			}

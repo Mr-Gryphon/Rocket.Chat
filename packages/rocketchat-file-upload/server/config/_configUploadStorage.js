@@ -14,6 +14,7 @@ const configStore = _.debounce(() => {
 
 	if (store) {
 		console.log('Setting default file store to', store);
+		console.log(`${ store }:Uploads`);
 		UploadFS.getStores().Avatars = UploadFS.getStore(`${ store }:Avatars`);
 		UploadFS.getStores().Uploads = UploadFS.getStore(`${ store }:Uploads`);
 		UploadFS.getStores().UserDataFiles = UploadFS.getStore(`${ store }:UserDataFiles`);

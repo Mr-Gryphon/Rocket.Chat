@@ -8,20 +8,20 @@ const copy = function(file, req, res) {
 };
 
 const IPFSUploads = new FileUploadClass({
-	name: 'IPFS:Uploads',
+	name: 'IPFSStore:Uploads',
 	get,
 	copy
 	// store setted below
 });
 
 const IPFSAvatars = new FileUploadClass({
-	name: 'IPFS:Avatars',
+	name: 'IPFSStore:Avatars',
 	get,
 	copy
 	// store setted below
 });
 const IPFSUserDataFiles = new FileUploadClass({
-	name: 'IPFS:UserDataFiles',
+	name: 'IPFSStore:UserDataFiles',
 	get,
 	copy
 	// store setted below
@@ -47,9 +47,9 @@ const configure = _.debounce(function() {
 		uploadFolderPath
 	};
 
-	IPFSUploads.store = FileUpload.configureUploadsStore('IPFS', IPFSUploads.name, config);
-	IPFSAvatars.store = FileUpload.configureUploadsStore('IPFS', IPFSAvatars.name, config);
-	IPFSUserDataFiles.store = FileUpload.configureUploadsStore('IPFS', IPFSUserDataFiles.name, config);
+	IPFSUploads.store = FileUpload.configureUploadsStore('IPFSStore', IPFSUploads.name, config);
+	IPFSAvatars.store = FileUpload.configureUploadsStore('IPFSStore', IPFSAvatars.name, config);
+	IPFSUserDataFiles.store = FileUpload.configureUploadsStore('IPFSStore', IPFSUserDataFiles.name, config);
 }, 500);
 
 RocketChat.settings.get(/^FileUpload_IPFSStorage_/, configure);
